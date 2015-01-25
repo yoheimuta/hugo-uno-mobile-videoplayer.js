@@ -1,0 +1,21 @@
+languageCode = "en-us"
+contentdir = "content"
+publishdir = "public"
+builddrafts = false
+baseurl = "http://yourSiteHere"
+canonifyurls = true
+title = "mobile-videoplayer.js"
+author = "yoheimuta"
+
+[indexes]
+    category = "categories"
+    tag = "tags"
+[Params]
+    AuthorName = "yoheimuta"
+    github = "yoheimuta/mobile-videoplayer.js"
+    bitbucket = "yoheimuta"
+    twitter = "yoheimuta"
+    email = "yoheimuta@gmail.com"
+    description = "Web video player for mobile browser, especially for ios safari which is disabled to autoplay mp4"
+    muut = "mobilevideoplayerjs"
+    logo = "https://golang.org/doc/gopher/run.png"
