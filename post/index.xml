@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Posts on mobile-videoplayer.js </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://yoheimuta.github.io/hugo-uno-mobile-videoplayer.js/post/index.xml/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Thu, 22 Jan 2015 00:33:30 &#43;0900</updated>
+    
+    <item>
+      <title>Introduction</title>
+      <link>http://yoheimuta.github.io/hugo-uno-mobile-videoplayer.js/post/intro/</link>
+      <pubDate>Thu, 22 Jan 2015 00:33:30 &#43;0900</pubDate>
+      
+      <guid>http://yoheimuta.github.io/hugo-uno-mobile-videoplayer.js/post/intro/</guid>
+      <description>
+
+&lt;p&gt;&lt;code&gt;mobile-videoplayer.js&lt;/code&gt; is the videoplayer for mobile browser, especially for ios safari which is disabled to autoplay mp4, inspired by &lt;a href=&#34;https://github.com/shin1ohno/jani&#34;&gt;jani&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note that &lt;code&gt;tamagotchi_4u.mp4&lt;/code&gt; which is used to show this product demo is &lt;a href=&#34;http://creativecommons.org/licenses/by/2.1/jp/&#34;&gt;CC BY&lt;/a&gt;, belonged to BandaiJP.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_0&#34;&gt;Demo&lt;/h3&gt;
+
+&lt;iframe width=&#34;320&#34; height=&#34;240&#34; src=&#34;http://yoheimuta.github.io/mobile-videoplayer.js&#34; frameborder=&#34;0&#34; scrolling=no&gt;&lt;/iframe&gt;
+
+&lt;h3 id=&#34;toc_1&#34;&gt;Usage&lt;/h3&gt;
+
+&lt;p&gt;Create the container tag.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;load-scene&lt;/code&gt; class element is displayed until the video is finished loading.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;play-scene&lt;/code&gt; class element has one or multiple strip class elements. See &lt;a href=&#34;/README.md#question&#34;&gt;Question&lt;/a&gt; below to understand why you must prepare multiple images to show long video.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;replay-scene&lt;/code&gt; class element and &lt;code&gt;done-scene&lt;/code&gt; class element are displayed after the video is finished playing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;replay-scene&lt;/code&gt; class element is going to be registered click event to replay the video.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set &lt;code&gt;data-*-url&lt;/code&gt; to send fine-grained impression trackings following &lt;code&gt;VAST&lt;/code&gt; format as close as possible.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;video_container&amp;quot;&amp;gt;
+  &amp;lt;div class=&amp;quot;load-scene&amp;quot;&amp;gt;
+      &amp;lt;img src=&amp;quot;http://placehold.it/320x180&amp;quot;&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div
+      class=&amp;quot;play-scene&amp;quot;
+      data-frame-width=320
+      data-frame-height=180
+      data-fps=12
+      data-did-start-url=&amp;quot;&amp;quot;
+      data-did-resume-url=&amp;quot;&amp;quot;
+      data-did-complete-url=&amp;quot;&amp;quot;
+      data-first-quartile-url=&amp;quot;&amp;quot;
+      data-midpoint-url=&amp;quot;&amp;quot;
+      data-third-quartile-url=&amp;quot;&amp;quot;
+      data-did-pause-url=&amp;quot;&amp;quot;
+      style=&amp;quot;display: none;&amp;quot;
+      &amp;gt;
+      &amp;lt;div
+          data-url=&amp;quot;assets/tamagotchi_320x180_1.a9ac945e.jpg&amp;quot;
+          class=&amp;quot;strip&amp;quot;
+          &amp;gt;
+          &amp;lt;img&amp;gt;
+      &amp;lt;/div&amp;gt;
+      &amp;lt;div
+          data-url=&amp;quot;assets/tamagotchi_320x180_2.d10717e2.jpg&amp;quot;
+          class=&amp;quot;strip&amp;quot;
+          style=&amp;quot;display: none;&amp;quot;
+          &amp;gt;
+          &amp;lt;img&amp;gt;
+      &amp;lt;/div&amp;gt;
+      &amp;lt;div
+          data-url=&amp;quot;assets/tamagotchi_320x180_3.a6a03603.jpg&amp;quot;
+          class=&amp;quot;strip&amp;quot;
+          style=&amp;quot;display: none;&amp;quot;
+          &amp;gt;
+          &amp;lt;img&amp;gt;
+      &amp;lt;/div&amp;gt;
+      &amp;lt;div
+          data-url=&amp;quot;assets/tamagotchi_320x180_4.0895f168.jpg&amp;quot;
+          class=&amp;quot;strip&amp;quot;
+          style=&amp;quot;display: none;&amp;quot;
+          &amp;gt;
+          &amp;lt;img&amp;gt;
+      &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div class=&amp;quot;replay-scene&amp;quot; style=&amp;quot;display: none;&amp;quot;&amp;gt;
+      &amp;lt;p&amp;gt;replay ?&amp;lt;/p&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div class=&amp;quot;done-scene&amp;quot; style=&amp;quot;display: none;&amp;quot;&amp;gt;
+      &amp;lt;img src=&amp;quot;http://placehold.it/320x180&amp;quot;&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Insert the script.&lt;/p&gt;
+
+&lt;p&gt;Pass &lt;code&gt;container element id&lt;/code&gt; as 1st arg and &lt;code&gt;is_debug flag to console log&lt;/code&gt; as 2nd arg.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;mvplayer.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+window.onload = function(){
+    MVPlayer.Controller.run(document.getElementById(&amp;quot;video_container&amp;quot;), true);
+};
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;toc_2&#34;&gt;Support&lt;/h3&gt;
+
+&lt;p&gt;Confirmed to work well in these browsers listed below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IE6, IE7, IE8, Safari(7.1/8), Firefox(31), Chrome(39),
+iOS Safari(iOS6, iOS7, iOS8), Android(2.2, 4.4, 5)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also confirmed that time to complete loading and then start almost video is about 3~4 sec in mobile 3G network.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_3&#34;&gt;Namespace&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;mobile-videoplayer.js&lt;/code&gt; use only one global variable &lt;code&gt;MVPlayer&lt;/code&gt; to avoid polluting other global namespace.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_4&#34;&gt;Install&lt;/h3&gt;
+
+&lt;p&gt;Install grunt and bower commands.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo npm install -g grunt-cli
+sudo npm install -g bower
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then install node module local dependencies.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And install bower components.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;bower install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;toc_5&#34;&gt;Run&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;grunt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then access &lt;code&gt;http://localhost:9000/&lt;/code&gt; or &lt;code&gt;http://localhost:9000/scroll.html&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_6&#34;&gt;Test&lt;/h3&gt;
+
+&lt;p&gt;Run tests using only PhantomJS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;grunt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run tests using FireFox, Chrome, Safari, PhantomJS and other (see &lt;code&gt;Grunt.coffee&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;grunt testem:run:long
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run tests to generate test coverage.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;grunt testem:run:long
+open coverage/lcov-report/index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;toc_7&#34;&gt;Convert mp4 to jpgs&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;a href=&#34;https://github.com/shin1ohno/jani-strip_maker&#34;&gt;jani-strip_maker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;./bin/strip_maker from_movie_to_strips --input_file ./src/assets/tamagotchi_4u.mp4 --fps 12 --height 180 --width 320
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;toc_8&#34;&gt;Question&lt;/h3&gt;
+
+&lt;p&gt;The reason why multiple images are needed is that &lt;a href=&#34;http://www.tomshardware.com/reviews/ipad-3-benchmark-review,3156-5.html&#34;&gt;mobile version of Safari automatically downsamples any jpg when it hits the 1024x1024 pixel limit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;According to &lt;a href=&#34;https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/CreatingContentforSafarioniPhone/CreatingContentforSafarioniPhone.html&#34;&gt;Apple&amp;rsquo;s Guideline about Know iOS Resource Limits&lt;/a&gt;, the limit about 1024 pixel seems to me not to be applied to jpg.&lt;/li&gt;
+&lt;li&gt;But when I tried to use an over 1024 pixel jpg in mobile version of Safari, I could confirm to be rendered a terribly coarse one.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/shin1ohno/jani-strip_maker&#34;&gt;jani-strip_maker&lt;/a&gt; is supported to split into multiple jpgs automatically for avoiding this limit.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_9&#34;&gt;Licence&lt;/h3&gt;
+
+&lt;p&gt;Licensed under the MIT license.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
